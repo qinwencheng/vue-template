@@ -1,46 +1,77 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
+defineProps<{ msg: string }>()
 defineOptions({
   name: 'IndexPage',
 })
-
-const name = $ref('')
-
-const router = useRouter()
-const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
+const count = ref(0)
+const input = ref('element-plus')
+const curDate = ref('')
+const toast = () => {
+  ElMessage.success('Hello')
 }
 </script>
 
 <template>
-  <div>
-    <div i-carbon-campsite text-4xl inline-block />
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
-      </a>
-    </p>
-    <p>
-      <em text-sm op75>Opinionated Vite Starter Template</em>
-    </p>
+  <h1>{{ msg }}</h1>
 
-    <div py-4 />
+  <p>
+    See
+    <a href="https://element-plus.org" target="_blank">element-plus</a> for
+    more information.
+  </p>
 
-    <TheInput
-      v-model="name"
-      placeholder="What's your name?"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
+  <!-- example components -->
+  <el-button @click="toast">
+    El Message
+  </el-button>
+  <el-button type="primary" @click="count++">
+    count is: {{ count }}
+  </el-button>
+  <el-button type="success" @click="count++">
+    count is: {{ count }}
+  </el-button>
+  <el-button type="warning" @click="count++">
+    count is: {{ count }}
+  </el-button>
+  <el-button type="danger" @click="count++">
+    count is: {{ count }}
+  </el-button>
+  <el-button type="info" @click="count++">
+    count is: {{ count }}
+  </el-button>
+  <br>
+  <el-input v-model="input" style="width: 200px; margin: 20px" />
+  <el-tag>Tag 1</el-tag>
 
-    <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
-        Go
-      </button>
-    </div>
-  </div>
+  <br>
+  <el-date-picker v-model="curDate" type="date" placeholder="Pick a day" />
+
+  <p>For example, we can custom primary color to 'green'.</p>
+
+  <p>
+    Edit
+    <code>components/HelloWorld.vue</code> to test components.
+  </p>
+  <p>
+    Edit
+    <code>styles/element/var.scss</code> to test scss variables.
+  </p>
+
+  <p>
+    Full Example:
+    <a href="https://github.com/element-plus/element-plus-vite-starter" target="_blank">element-plus-vite-starter</a>
+    | On demand Example:
+    <a
+      href="https://github.com/element-plus/unplugin-element-plus"
+      target="_blank"
+    >unplugin-element-plus/examples/vite</a>
+  </p>
 </template>
+
+<style>
+.ep-button {
+  margin: 4px;
+}
+</style>

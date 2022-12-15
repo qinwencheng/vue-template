@@ -7,6 +7,7 @@ import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueMacros from 'unplugin-vue-macros/vite'
 
 export default defineConfig({
@@ -35,6 +36,7 @@ export default defineConfig({
         'vue-router',
         '@vueuse/core',
       ],
+      resolvers: [ElementPlusResolver()],
       dts: true,
       dirs: [
         './src/composables',
@@ -45,6 +47,7 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-components
     Components({
       dts: true,
+      resolvers: [ElementPlusResolver()],
     }),
 
     // https://github.com/antfu/unocss
